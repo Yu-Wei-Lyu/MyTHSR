@@ -4,13 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Firebase Google 登入示例</title>
+  <style>
+    #titleBar {
+      display: none;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+    }
+    #loginSection, #logoutSection {
+      margin: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Firebase Google 登入示例</h1>
-  <!-- 登入按鈕 -->
-  <button id="googleSignInButton">使用 Google 登入</button>
+  <!-- 標題欄，顯示使用者名稱和登出按鈕 -->
+  <div id="titleBar">
+    歡迎, <span id="userName"></span>!
+    <button id="logoutButton">登出</button>
+  </div>
 
-  <!-- 引入自定義的 Firebase 配置和認證腳本 -->
+  <!-- 登入介面 -->
+  <div id="loginSection">
+    <h1>Firebase Google 登入示例</h1>
+    <button id="googleSignInButton">使用 Google 登入</button>
+  </div>
+
   <script type="module" src="./src/js/firebase-config.js"></script>
   <script type="module" src="./src/js/firebase-auth.js"></script>
 </body>
