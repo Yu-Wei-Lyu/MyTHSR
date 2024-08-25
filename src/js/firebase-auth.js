@@ -13,15 +13,31 @@ const logoutButton = document.getElementById('logoutButton');
 
 // 登入按鈕事件
 googleSignInButton.addEventListener('click', () => {
-  signInWithRedirect(auth, provider)
-    .then((result) => {
+  signInWithRedirect(auth, provider);
+});
+
+// 獲取重定向結果並處理
+getRedirectResult(auth)
+  .then((result) => {
+    if (result && result.user) {
       console.log("登入成功", result.user);
       showUserDetails(result.user);
-    })
-    .catch((error) => {
-      console.error("登入失敗", error);
-      alert(`登入失敗: ${error.message}`);
-    });
+    }
+  })
+  .catch((error) => {
+    console.error("登入失敗", error);
+    alert(`登入失敗: ${error.message}`);
+  });
+
+// 使用 onAuthStateChanged 確認用戶狀態
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("使用者已登入", user);
+    showUserDetails(user);
+  } else {
+    console.log("使用者未登入");
+    showLoginInterface();
+  }
 });
 
 // 登出按鈕事件
